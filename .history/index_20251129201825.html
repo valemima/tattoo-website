@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoo Studio - Profesionalne Tetovaže i Nega Kože</title>
+    <style>
+        /* Reset i osnovni stilovi */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header - inspirisan juncha.com */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        /* Hero sekcija - juncha stil */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: #f8f8f8;
+        }
+
+        /* Sekcije - clean dizajn */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Galerija grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: #f8f8f8;
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Proizvodi */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-card h3 {
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .product-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .buy-button:hover {
+            background: #333;
+        }
+
+        /* Kontakt forma */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: #000;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigacija -->
+    <header>
+        <nav>
+            <a href="#" class="logo">TATTOO STUDIO</a>
+            <ul class="nav-links">
+                <li><a href="#home">Početna</a></li>
+                <li><a href="#about">O nama</a></li>
+                <li><a href="#gallery">Galerija</a></li>
+                <li><a href="#products">Proizvodi</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero sekcija -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Umjetnost na vašoj koži</h1>
+            <p>Profesionalne tetovaže i specijalizovani proizvodi za negu</p>
+            <a href="#contact" class="cta-button">Zakaži termin</a>
+        </div>
+    </section>
+
+    <!-- O nama -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>O našem studiju</h2>
+            <p>Sa višegodišnjim iskustvom i strastju prema umetnosti tetoviranja, naš tim pruža vrhunske usluge uz maksimalnu brigu o vašem komforu i bezbednosti.</p>
+        </div>
+    </section>
+
+    <!-- Galerija -->
+    <section id="gallery" class="section" style="background: #f8f8f8;">
+        <div class="section-header">
+            <h2>Naši radovi</h2>
+            <p>Pogledajte galeriju naših najnovijih tetovaža i inspirirajte se</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">Tetovaža 1</div>
+            <div class="gallery-item">Tetovaža 2</div>
+            <div class="gallery-item">Tetovaža 3</div>
+            <div class="gallery-item">Tetovaža 4</div>
+            <div class="gallery-item">Tetovaža 5</div>
+            <div class="gallery-item">Tetovaža 6</div>
+        </div>
+    </section>
+
+    <!-- Proizvodi -->
+    <section id="products" class="section">
+        <div class="section-header">
+            <h2>Proizvodi za negu</h2>
+            <p>Specijalizovani proizvodi za negu tetovaže pre i posle postupka</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>Regeneraciona krema</h3>
+                <p>Za brzo zaceljivanje i negu nove tetovaže</p>
+                <div class="price">2.500 RSD</div>
+                <a href="#" class="buy-button">Kupi</a>
+            </div>
+            <div class="product-card">
+                <h3>Hidratantni losion</h3>
+                <p>Za dugotrajnu hidrataciju i zaštitu tetovaže</p>
+                <div class="price">1.800 RSD</div>
+                <a href="#" class="buy-button">Kupi</a>
+            </div>
+            <div class="product-card">
+                <h3>Zaštitni sprej</h3>
+                <p>Zaštita od sunca i negativnih uticaja</p>
+                <div class="price">2.200 RSD</div>
+                <a href="#" class="buy-button">Kupi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="contact" class="section" style="background: #f8f8f8;">
+        <div class="section-header">
+            <h2>Kontaktirajte nas</h2>
+            <p>Javite nam se za termine, pitanja ili savete</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Informacije</h3>
+                <p>📱 060/123-4567</p>
+                <p>✉️ info@tattoostudio.com</p>
+                <p>📍 Ulica bb, Beograd</p>
+                <p>🕒 Radno vreme: 10-18h</p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Ime i prezime" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Telefon">
+                    <textarea placeholder="Poruka" required></textarea>
+                    <button type="submit" class="submit-button">Pošalji poruku</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Tattoo Studio. Sva prava zadržana.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Glatko skrolovanje
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Dodajemo klasu za transparent header kada se skroluje
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>

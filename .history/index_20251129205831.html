@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ink Masters - Premium Tattoo Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset i varijable */
+        :root {
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #8B4513;
+            --light: #f8f8f8;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--secondary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero sekcija */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, 
+                rgba(0,0,0,0.8) 0%, 
+                rgba(51,51,51,0.9) 100%),
+                url('https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.8rem;
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Sekcije */
+        .section {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Galerija */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item:nth-child(2) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .gallery-item:nth-child(3) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .gallery-item:nth-child(4) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .gallery-item:nth-child(5) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .gallery-item:nth-child(6) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Proizvodi */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: stretch;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        .product-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .product-card.bestseller:before {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .badge.new {
+            background: #4CAF50;
+        }
+
+        .badge.organic {
+            background: #8BC34A;
+        }
+
+        .badge.sale {
+            background: #FF5722;
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .product-card p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .rating {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .rating span {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+            margin-right: 0.5rem;
+        }
+
+        /* Benefits section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .benefit-card p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card .stars {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .testimonial-author strong {
+            display: block;
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+
+        .testimonial-author span {
+            display: block;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .buy-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            flex-shrink: 0;
+        }
+
+        .buy-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        /* Kontakt */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            width: 30px;
+        }
+
+        .contact-form {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h4,
+        .footer-social h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            background: #128C7E;
+        }
+
+        .whatsapp-float i {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links { gap: 2rem; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 3rem; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .section { padding: 6rem 1.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .cta-button { width: 100%; max-width: 300px; justify-content: center; }
+            .products-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigacija -->
+    <header>
+        <nav>
+            <a href="#" class="logo">INK<span>MASTERS</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Početna</a></li>
+                <li><a href="#about">O nama</a></li>
+                <li><a href="#gallery">Galerija</a></li>
+                <li><a href="#products">Proizvodi</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero sekcija -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Profesionalna Nega Vaše Tetovaže</h1>
+            <p>Premium proizvodi za dugotrajnu lepotu i zdravlje vaše tetovaže</p>
+            <div class="cta-buttons">
+                <a href="#products" class="cta-button">
+                    <i class="fas fa-shopping-bag"></i>
+                    Pogledaj Proizvode
+                </a>
+                <a href="#gallery" class="cta-button secondary">
+                    <i class="fas fa-images"></i>
+                    Pogledaj Radove
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zašto naši proizvodi -->
+    <section id="why-us" class="section" style="background: var(--light);">
+        <div class="section-header">
+            <h2>Zašto Izabrati Naše Proizvode?</h2>
+            <p>Premium kvalitet koji garantuje najbolje rezultate za vašu tetovažu</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>Dermatološki Testirano</h3>
+                <p>Svi proizvodi prolaze rigorozne dermatološke testove i bezbedni su za sve tipove kože</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Prirodni Sastojci</h3>
+                <p>Formulisano sa organskim ekstraktima i bez štetnih hemikalija</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>Profesionalno Korišćeno</h3>
+                <p>Preporučeno od strane vodećih tattoo umetnika širom Srbije</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-undo"></i>
+                </div>
+                <h3>Garancija Zadovoljstva</h3>
+                <p>30 dana garancije povraćaja novca ako niste zadovoljni rezultatima</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- O nama -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>Premium Tattoo Experience</h2>
+            <p>Naš studio kombinuje tradicionalne tehnike sa modernim pristupom, garantujući vrhunski kvalitet i bezbednost svakog postupka</p>
+        </div>
+    </section>
+
+    <!-- Galerija -->
+    <section id="gallery" class="section" style="background: var(--light);">
+        <div class="section-header">
+            <h2>Naša Galerija</h2>
+            <p>Inspirišite se našim najnovijim radovima i različitim stilovima tetoviranja</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">Traditional Style</div>
+            <div class="gallery-item">Realism Art</div>
+            <div class="gallery-item">Geometric Design</div>
+            <div class="gallery-item">Watercolor Effect</div>
+            <div class="gallery-item">Black & Gray</div>
+            <div class="gallery-item">Japanese Art</div>
+        </div>
+    </section>
+
+    <!-- Proizvodi -->
+    <section id="products" class="section">
+        <div class="section-header">
+            <h2>Premium Nega Tetovaže</h2>
+            <p>Specijalizovani proizvodi formulirani za optimalno zaceljivanje i dugovečnost vaše tetovaže</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card bestseller">
+                <div class="badge">BESTSELLER</div>
+                <div class="product-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Regeneraciona Krema</h3>
+                <p>Premium formula sa pantenolom i vitaminom E za brzo zaceljivanje. Dermatološki testirana.</p>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>(127 recenzija)</span></div>
+                <div class="price">2.999 RSD</div>
+                <a href="#" class="buy-button">🛒 Dodaj u korpu</a>
+            </div>
+            <div class="product-card">
+                <div class="badge new">NOVO</div>
+                <div class="product-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <h3>UV Zaštitni Losion SPF50</h3>
+                <p>Profesionalna zaštita od sunca. Sprečava izblednјavanje boja i oštećenja kože.</p>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>(89 recenzija)</span></div>
+                <div class="price">2.499 RSD</div>
+                <a href="#" class="buy-button">🛒 Dodaj u korpu</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Hidratantni Balsam</h3>
+                <p>Intenzivna hidratacija sa prirodnim uljima. Održava kožu mekom i elastičnom.</p>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>(104 recenzija)</span></div>
+                <div class="price">1.999 RSD</div>
+                <a href="#" class="buy-button">🛒 Dodaj u korpu</a>
+            </div>
+            <div class="product-card">
+                <div class="badge organic">ORGANSKI</div>
+                <div class="product-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Antibakterijski Gel</h3>
+                <p>Sa organskim ekstraktom kalendule. Sprečava infekcije tokom procesa zaceljivanja.</p>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>(76 recenzija)</span></div>
+                <div class="price">2.299 RSD</div>
+                <a href="#" class="buy-button">🛒 Dodaj u korpu</a>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3>Revitalizirajući Serum</h3>
+                <p>Napredna formula za obnovu boja starih tetovaža. Vraća originalnu živost.</p>
+                <div class="rating">⭐⭐⭐⭐☆ <span>(52 recenzija)</span></div>
+                <div class="price">3.499 RSD</div>
+                <a href="#" class="buy-button">🛒 Dodaj u korpu</a>
+            </div>
+            <div class="product-card">
+                <div class="badge sale">-20%</div>
+                <div class="product-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <h3>Kompletan Set za Negu</h3>
+                <p>Sve što vam treba: krema, losion i balsam u jednom paketu. Uštedite 20%!</p>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>(143 recenzija)</span></div>
+                <div class="price"><span class="old-price">6.997 RSD</span> 5.597 RSD</div>
+                <a href="#" class="buy-button">🛒 Dodaj u korpu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recenzije -->
+    <section id="testimonials" class="section">
+        <div class="section-header">
+            <h2>Šta Kažu Naši Kupci</h2>
+            <p>Pročitajte iskustva zadovoljnih korisnika naših proizvoda</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Regeneraciona krema je fantastična! Moja tetovaža se zacelila za samo 10 dana, bez ikakvog problema. Definitivno najbolja krema koju sam probala."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div>
+                        <strong>Marija Petrović</strong>
+                        <span>Beograd</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Imam više tetovaža i uvek koristim ove proizvode. UV losion je obavezan tokom leta - boje ostaju žive i intenzivne kao prvog dana!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">S</div>
+                    <div>
+                        <strong>Stefan Jovanović</strong>
+                        <span>Novi Sad</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Kompletan set je bio prava investicija. Imam osetljivu kožu i nikakvih iritacija nisam imala. Preporučujem svima koji ozbiljno vode računa o svojim tetovažama."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">A</div>
+                    <div>
+                        <strong>Ana Nikolić</strong>
+                        <span>Niš</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Kao tetovažu umetnik, ove proizvode preporučujem svim svojim klijentima. Rezultati su odlični, zaceljivanje brzo i bez komplikacija."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">D</div>
+                    <div>
+                        <strong>Dušan Mihailović</strong>
+                        <span>Tattoo Artist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="contact" class="section" style="background: var(--light);">
+        <div class="section-header">
+            <h2>Zakažite Termin</h2>
+            <p>Javite nam se za konsultacije, termine ili bilo kakva pitanja</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Kontakt Informacije</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Knez Mihailova 15, Beograd</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>+381 60 123 4567</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@inkmasters.rs</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-clock"></i>
+                    <span>Pon-Sub: 10:00 - 20:00<br>Nedelja: Zatvoreno</span>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Ime i prezime" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email adresa" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Broj telefona">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Vrsta usluge</option>
+                            <option value="consultation">Konsultacije</option>
+                            <option value="tattoo">Tetoviranje</option>
+                            <option value="touchup">Dotiranje</option>
+                            <option value="other">Ostalo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Poruka ili opis željene tetovaže..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Pošalji Poruku
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-logo">INKMASTERS</div>
+                <p>Vrhunski studio tetovaža posvećen umetnosti, kvalitetu i bezbednosti naših klijenata.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Brzi Linkovi</h4>
+                <a href="#home">Početna</a>
+                <a href="#about">O nama</a>
+                <a href="#gallery">Galerija</a>
+                <a href="#products">Proizvodi</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+            <div class="footer-social">
+                <h4>Pratite Nas</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 INKMASTERS Tattoo Studio. Sva prava zadržana.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/381601234567?text=Pozdrav!%20Zanima%20me%20više%20o%20vašim%20proizvodima" class="whatsapp-float" target="_blank" title="Kontaktirajte nas na WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Glatko skrolovanje
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Header efekat na skrol
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Animacija na skrol
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Opazite elemente za animaciju
+        document.querySelectorAll('.gallery-item, .product-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

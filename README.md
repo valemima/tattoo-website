@@ -78,4 +78,4 @@ npx http-server
 
 ---
 
-**© 2024 Frenki's House of Ink. Sva prava zadržana.**
+**© 2025 Frenki's House of Ink. Sva prava zadržana.**

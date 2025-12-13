@@ -1,0 +1,265 @@
+/* ========================================
+   Responsive Design - Media Queries
+   ======================================== */
+
+/* Large Tablets & Small Laptops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-grid {
+        gap: 3rem;
+    }
+
+    .footer-content {
+        gap: 2rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--gray-dark);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        border-top: 1px solid var(--gray-light); /* var(--gray-light) is now #2a2a2a, which is correct */
+        box-shadow: var(--shadow);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--gray-light); /* Correct for dark theme */
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Hero */
+    .hero {
+        padding: 6rem 1.5rem 4rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Sections */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    /* Products */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* WhatsApp */
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    /* Typography */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.3rem; }
+
+    p {
+        font-size: 1rem;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 1rem 1.5rem;
+    }
+
+    .logo-img {
+        height: 35px;
+    }
+
+    .footer-logo-img {
+        height: 45px;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 5rem 1rem 3rem;
+        min-height: 90vh;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    /* Sections */
+    .section {
+        padding: 3rem 1rem;
+    }
+
+    .section-header p {
+        font-size: 1rem;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gallery-item img {
+        /* On mobile, remove the grayscale filter for better visibility */
+        filter: grayscale(0%) brightness(1);
+    }
+
+    /* Products */
+    .product-card {
+        padding: 1.5rem;
+    }
+
+    .product-icon {
+        font-size: 2rem;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+    }
+
+    /* Contact */
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 3rem 1rem 1.5rem;
+    }
+
+    .footer-logo-img {
+        height: 50px;
+    }
+
+    .social-icons a {
+        font-size: 1.3rem;
+    }
+
+    /* WhatsApp */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    nav {
+        padding: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .section {
+        padding: 2.5rem 0.8rem;
+    }
+}
